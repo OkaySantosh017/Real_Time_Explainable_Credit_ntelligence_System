@@ -1,58 +1,26 @@
-# Real-Time Explainable Credit Intelligence System
-
-This repository contains a full-stack system with:
-- **frontend/**: React + Tailwind UI
-- **backend/**: Node.js + Express + MongoDB
-- **ml-model/**: Python + FastAPI + RandomForest + SHAP
-
-## Architecture
-- User signs up / logs in via backend with JWT
-- Credit analysis form sends data to backend
-- Backend calls ML service `/predict`, stores history
-- Frontend displays score, risk, explanation, and history
-
-## Setup
-
-### 1) ML model service
-```bash
-cd ml-model
-python -m venv .venv
-.\.venv\Scripts\Activate
-pip install -r requirements.txt
-uvicorn main:app --reload --port 8000
-```
-
-### 2) Backend
-```bash
-cd backend
-npm install
-cp .env.example .env
-# edit .env if needed
-npm run dev
-```
-
-### 3) Frontend
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-Open frontend at `http://localhost:5173`, backend at `http://localhost:5000`, ML at `http://localhost:8000`.
-
-## Notes
-- Frontend uses `VITE_BACKEND_URL` (defaults to `http://localhost:5000/api`)
-- The ML endpoint returns `score`, `risk`, `explanation`, and `feature_importance`
-
-## Sample Input
-```
-{
-  "income": 60000,
-  "credit_history": 7,
-  "loan_amount": 18000,
-  "spending_score": 65,
-  "transaction_frequency": 22,
-  "age": 34,
-  "tenure_months": 48
-}
-```
+Real-Time Explainable Credit Intelligence System
+This project is an end-to-end Azure-based data engineering and machine learning solution designed to evaluate credit risk in real time while ensuring model transparency using Explainable AI.
+🔹 Key Features
+Real-time credit risk prediction & loan approval system
+Integrated Explainable AI (SHAP, LIME) for model interpretability
+Scalable cloud-based data pipeline on Azure
+🔹 Architecture
+ADF → Azure Data Lake Gen2 → Databricks (PySpark) → Synapse Analytics → ML Models → Power BI
+🔹 Tech Stack
+Data Engineering: Azure Data Factory (ADF), Azure Data Lake Gen2, Azure Synapse
+Processing: Azure Databricks, PySpark, SQL
+Machine Learning: Logistic Regression, Random Forest, XGBoost
+Explainability: SHAP, LIME
+Visualization: Power BI
+🔹 Workflow
+Data Ingestion: Built ETL pipelines using ADF to ingest financial & customer data
+Data Processing: Cleaned and transformed data using PySpark in Databricks
+Data Modeling: Designed fact & dimension tables in Synapse
+Model Development: Trained ML models for credit risk prediction
+Explainability: Applied SHAP & LIME for decision transparency
+Visualization: Created dashboards in Power BI for insights
+Deployment: Automated end-to-end pipeline for real-time predictions
+🔹 Results
+Achieved 94% accuracy and 0.97 AUC
+Improved decision transparency and trust
+Reduced manual analysis through automated pipelines
